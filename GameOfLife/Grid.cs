@@ -1,7 +1,6 @@
-﻿namespace GameOfLifeTests
+﻿namespace GameOfLife
 {
     using System.Collections.Generic;
-    using GameOfLife;
 
     public class Grid
     {
@@ -11,12 +10,5 @@
         {
 
         }
-
-
-    }
-
-    public class GridTests
-    {
-
     }
 }

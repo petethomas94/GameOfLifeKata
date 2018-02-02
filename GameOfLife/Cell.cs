@@ -44,10 +44,4 @@
             return State == CellState.Alive;
         }
     }
-
-    public enum CellState
-    {
-        Alive,
-        Dead
-    }
 }
