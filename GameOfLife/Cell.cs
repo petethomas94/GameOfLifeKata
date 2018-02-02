@@ -11,17 +11,19 @@
             State = state;
         }
 
-        public void SetNextState(params Cell[] surroundingCells)
+        public CellState GetNextState(params Cell[] surroundingCells)
         {
             if (Underpopulated(surroundingCells) || Overpopulated(surroundingCells))
             {
-                State = CellState.Dead;
+                return CellState.Dead;
             }
 
             if (ReadyToReproduce(surroundingCells))
             {
-                State = CellState.Alive;
+                return CellState.Alive;
             }
+
+            return CellState.Alive;
         }
 
         private bool ReadyToReproduce(Cell[] surroundingCells)
