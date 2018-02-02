@@ -10,9 +10,9 @@
         {
             var cell = new Cell(CellState.Alive);
 
-            cell.SetNextState(new Cell(CellState.Alive), new Cell(CellState.Dead), new Cell(CellState.Dead));
+            var actual = cell.GetNextState(new Cell(CellState.Alive), new Cell(CellState.Dead), new Cell(CellState.Dead));
 
-            Assert.False(cell.IsAlive());
+            Assert.Equal(CellState.Dead, actual);
         }
 
         [Fact]
@@ -20,9 +20,9 @@
         {
             var cell = new Cell(CellState.Alive);
 
-            cell.SetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Dead));
+            var actual = cell.GetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Dead));
 
-            Assert.True(cell.IsAlive());
+            Assert.Equal(CellState.Alive, actual);
         }
 
         [Fact]
@@ -30,9 +30,9 @@
         {
             var cell = new Cell(CellState.Alive);
 
-            cell.SetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive));
+            var actual = cell.GetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive));
 
-            Assert.True(cell.IsAlive());
+            Assert.Equal(CellState.Alive, actual);
         }
 
         [Fact]
@@ -40,9 +40,9 @@
         {
             var cell = new Cell(CellState.Alive);
 
-            cell.SetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive));
+            var actual = cell.GetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive));
 
-            Assert.False(cell.IsAlive());
+            Assert.Equal(CellState.Dead, actual);
         }
 
         [Fact]
@@ -50,9 +50,9 @@
         {
             var cell = new Cell(CellState.Dead);
 
-            cell.SetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive));
+            var actual = cell.GetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive));
 
-            Assert.True(cell.IsAlive());
+            Assert.Equal(CellState.Alive, actual);
         }
     }
 }
