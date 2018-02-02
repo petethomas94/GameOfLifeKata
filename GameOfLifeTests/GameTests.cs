@@ -1,5 +1,6 @@
 ﻿namespace GameOfLifeTests
 {
+    using GameOfLife;
     using Moq;
 
     public class GameTests
