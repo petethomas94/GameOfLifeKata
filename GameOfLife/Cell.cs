@@ -13,9 +13,14 @@
 
         public CellState GetNextState(params Cell[] surroundingCells)
         {
-            if (Underpopulated(surroundingCells) || Overpopulated(surroundingCells))
+            if (IsAlive())
             {
-                return CellState.Dead;
+                if (Underpopulated(surroundingCells) || Overpopulated(surroundingCells))
+                {
+                    return CellState.Dead;
+                }
+
+                return CellState.Alive;
             }
 
             if (ReadyToReproduce(surroundingCells))
@@ -23,17 +28,17 @@
                 return CellState.Alive;
             }
 
-            return CellState.Alive;
+            return CellState.Dead;
         }
 
         private bool ReadyToReproduce(Cell[] surroundingCells)
         {
-            return State == CellState.Dead && surroundingCells.Count(c => c.IsAlive()) == 3;
+            return surroundingCells.Count(c => c.IsAlive()) == 3;
         }
 
         private static bool Overpopulated(Cell[] surroundingCells)
         {
-            return surroundingCells.Count(c => c.IsAlive()) > 3;
+            return surroundingCells.Count(c => c.IsAlive()) >= 4;
         }
 
         private static bool Underpopulated(Cell[] surroundingCells)
