@@ -1,6 +1,5 @@
 ﻿namespace GameOfLifeTests
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using GameOfLife;
@@ -81,57 +80,108 @@
             Assert.True(actual.All(c => c.IsAlive()));
             Assert.Equal(3, actual.Length);
         }
-    }
 
-    public class NeighbourSelector : INeighbourSelector
-    {
-        public Cell[] GetNeighbourCells(List<List<Cell>> grid, Coordinate cellCoordinate, CellPosition position)
+        [Fact]
+        private void SelectsCorrectCellsForTopEdge()
         {
-            switch (position)
-            {
-                case CellPosition.TopLeftCorner:
-                    return new[]
-                    {
-                        grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate + 1],
-                        grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate],
-                        grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate + 1],
-                    };
-                case CellPosition.TopEdge:
-                    break;
-                case CellPosition.TopRightCorner:
-                    return new[]
-                    {
-                        grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate + 1],
-                        grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate],
-                        grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate + 1],
-                    };
-                case CellPosition.RightEdge:
-                    break;
-                case CellPosition.BottomRightCorner:
-                    return new[]
-                    {
-                        grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate - 1],
-                        grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate - 1],
-                        grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate]
-                    };
-                case CellPosition.BottomEdge:
-                    break;
-                case CellPosition.BottomLeftCorner:
-                    return new[]
-                    {
-                        grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate - 1],
-                        grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate - 1],
-                        grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate]
-                    };
-                case CellPosition.LeftEdge:
-                    break;
-                case CellPosition.Centre:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(position), position, null);
-            }
+            var grid = new GridFactory().CreateGrid(
+                new GridDimensions(10, 10),
+                new List<Coordinate>()
+                {
+                    new Coordinate(4,0),
+                    new Coordinate(6, 0),
+                    new Coordinate(4, 1),
+                    new Coordinate(5, 1),
+                    new Coordinate(6, 1)
+                });
 
-            return null;
+            var actual = _sut.GetNeighbourCells(grid, new Coordinate(5, 0), CellPosition.TopEdge);
+
+            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.Equal(5, actual.Length);
+        }
+
+        [Fact]
+        private void SelectsCorrectCellsForBottomEdge()
+        {
+            var grid = new GridFactory().CreateGrid(
+                new GridDimensions(10, 10),
+                new List<Coordinate>()
+                {
+                    new Coordinate(4,9),
+                    new Coordinate(6, 9),
+                    new Coordinate(4, 8),
+                    new Coordinate(5, 8),
+                    new Coordinate(6, 8)
+                });
+
+            var actual = _sut.GetNeighbourCells(grid, new Coordinate(5, 9), CellPosition.BottomEdge);
+
+            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.Equal(5, actual.Length);
+        }
+
+        [Fact]
+        private void SelectsCorrectCellsForLeftEdge()
+        {
+            var grid = new GridFactory().CreateGrid(
+                new GridDimensions(10, 10),
+                new List<Coordinate>()
+                {
+                    new Coordinate(0,4),
+                    new Coordinate(0, 6),
+                    new Coordinate(1, 4),
+                    new Coordinate(1, 5),
+                    new Coordinate(1, 6)
+                });
+
+            var actual = _sut.GetNeighbourCells(grid, new Coordinate(0, 5), CellPosition.LeftEdge);
+
+            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.Equal(5, actual.Length);
+        }
+
+        [Fact]
+        private void SelectsCorrectCellsForRightEdge()
+        {
+            var grid = new GridFactory().CreateGrid(
+                new GridDimensions(10, 10),
+                new List<Coordinate>()
+                {
+                    new Coordinate(9,4),
+                    new Coordinate(9, 6),
+                    new Coordinate(8, 4),
+                    new Coordinate(8, 5),
+                    new Coordinate(8, 6)
+                });
+
+            var actual = _sut.GetNeighbourCells(grid, new Coordinate(9, 5), CellPosition.RightEdge);
+
+            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.Equal(5, actual.Length);
+        }
+
+        [Fact]
+        private void SelectsCorrectCellsForCentre()
+        {
+            var grid = new GridFactory().CreateGrid(
+                new GridDimensions(10, 10),
+                new List<Coordinate>()
+                {
+                    new Coordinate(4, 4),
+                    new Coordinate(5, 4),
+                    new Coordinate(6, 4),
+                    new Coordinate(4, 5),
+                    new Coordinate(6, 5),
+                    new Coordinate(4, 6),
+                    new Coordinate(5, 6),
+                    new Coordinate(6, 6),
+                });
+
+            var actual = _sut.GetNeighbourCells(grid, new Coordinate(5, 5), CellPosition.Centre);
+
+            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.Equal(8, actual.Length);
         }
     }
 }
