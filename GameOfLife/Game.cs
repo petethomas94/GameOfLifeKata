@@ -43,8 +43,6 @@
 
         public void PrintBoard()
         {
-            Console.Write('\n');
-
             for (var i = 0; i < _grid[0].Count; i++)
             {
                 for (var j = 0; j < _grid.Count; j++)
