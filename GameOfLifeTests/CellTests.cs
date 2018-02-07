@@ -8,51 +8,51 @@
         [Fact]
         public void CellShouldDieWithFewerThanTwoLiveNeighbours()
         {
-            var cell = new Cell(CellState.Alive);
+            var cell = Cell.Alive;
 
-            var actual = cell.GetNextState(new Cell(CellState.Alive), new Cell(CellState.Dead), new Cell(CellState.Dead));
+            var actual = cell.GetNextState(Cell.Alive, Cell.Dead, Cell.Dead);
 
-            Assert.Equal(CellState.Dead, actual);
+            Assert.Equal(Cell.Dead, actual);
         }
 
         [Fact]
         public void CellWithTwoLiveNeighboursLivesToNextGeneration()
         {
-            var cell = new Cell(CellState.Alive);
+            var cell = Cell.Alive;
 
-            var actual = cell.GetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Dead));
+            var actual = cell.GetNextState(Cell.Alive, Cell.Alive, Cell.Dead);
 
-            Assert.Equal(CellState.Alive, actual);
+            Assert.Equal(Cell.Alive, actual);
         }
 
         [Fact]
         public void CellWithThreeLiveNeighboursLivesToNextGeneration()
         {
-            var cell = new Cell(CellState.Alive);
+            var cell = Cell.Alive;
 
-            var actual = cell.GetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive));
+            var actual = cell.GetNextState(Cell.Alive, Cell.Alive, Cell.Alive);
 
-            Assert.Equal(CellState.Alive, actual);
+            Assert.Equal(Cell.Alive, actual);
         }
 
         [Fact]
         public void CellWithMoreThanThreeLiveNeighboursDies()
         {
-            var cell = new Cell(CellState.Alive);
+            var cell = Cell.Alive;
 
-            var actual = cell.GetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive));
+            var actual = cell.GetNextState(Cell.Alive, Cell.Alive, Cell.Alive, Cell.Alive);
 
-            Assert.Equal(CellState.Dead, actual);
+            Assert.Equal(Cell.Dead, actual);
         }
 
         [Fact]
         public void DeadCellWithThreeLiveNeighboursBecomesLive()
         {
-            var cell = new Cell(CellState.Dead);
+            var cell = Cell.Dead;
 
-            var actual = cell.GetNextState(new Cell(CellState.Alive), new Cell(CellState.Alive), new Cell(CellState.Alive));
+            var actual = cell.GetNextState(Cell.Alive, Cell.Alive, Cell.Alive);
 
-            Assert.Equal(CellState.Alive, actual);
+            Assert.Equal(Cell.Alive, actual);
         }
     }
 }

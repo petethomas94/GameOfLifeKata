@@ -17,11 +17,11 @@
                 {
                     if (seed.Any(c => c.XCoordinate == i && c.YCoordinate == j))
                     {
-                        grid[i].Add(new Cell(CellState.Alive));
+                        grid[i].Add(Cell.Alive);
                     }
                     else
                     {
-                        grid[i].Add(new Cell(CellState.Dead));
+                        grid[i].Add(Cell.Dead);
                     }
                 }
             }

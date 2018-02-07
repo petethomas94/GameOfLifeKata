@@ -23,7 +23,7 @@
 
             var actual = _sut.GetNeighbourCells(grid, new Coordinate(0, 0), CellPosition.TopLeftCorner);
 
-            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.True(actual.All(c => c == Cell.Alive));
             Assert.Equal(3, actual.Length);
         }
 
@@ -41,7 +41,7 @@
 
             var actual = _sut.GetNeighbourCells(grid, new Coordinate(9, 0), CellPosition.TopRightCorner);
 
-            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.True(actual.All(c => c == Cell.Alive));
             Assert.Equal(3, actual.Length);
         }
 
@@ -59,7 +59,7 @@
 
             var actual = _sut.GetNeighbourCells(grid, new Coordinate(9, 9), CellPosition.BottomRightCorner);
 
-            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.True(actual.All(c => c == Cell.Alive));
             Assert.Equal(3, actual.Length);
         }
 
@@ -77,7 +77,7 @@
 
             var actual = _sut.GetNeighbourCells(grid, new Coordinate(0, 9), CellPosition.BottomLeftCorner);
 
-            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.True(actual.All(c => c == Cell.Alive));
             Assert.Equal(3, actual.Length);
         }
 
@@ -97,7 +97,7 @@
 
             var actual = _sut.GetNeighbourCells(grid, new Coordinate(5, 0), CellPosition.TopEdge);
 
-            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.True(actual.All(c => c == Cell.Alive));
             Assert.Equal(5, actual.Length);
         }
 
@@ -117,7 +117,7 @@
 
             var actual = _sut.GetNeighbourCells(grid, new Coordinate(5, 9), CellPosition.BottomEdge);
 
-            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.True(actual.All(c => c == Cell.Alive));
             Assert.Equal(5, actual.Length);
         }
 
@@ -137,7 +137,7 @@
 
             var actual = _sut.GetNeighbourCells(grid, new Coordinate(0, 5), CellPosition.LeftEdge);
 
-            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.True(actual.All(c => c == Cell.Alive));
             Assert.Equal(5, actual.Length);
         }
 
@@ -157,7 +157,7 @@
 
             var actual = _sut.GetNeighbourCells(grid, new Coordinate(9, 5), CellPosition.RightEdge);
 
-            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.True(actual.All(c => c == Cell.Alive));
             Assert.Equal(5, actual.Length);
         }
 
@@ -180,7 +180,7 @@
 
             var actual = _sut.GetNeighbourCells(grid, new Coordinate(5, 5), CellPosition.Centre);
 
-            Assert.True(actual.All(c => c.IsAlive()));
+            Assert.True(actual.All(c => c == Cell.Alive));
             Assert.Equal(8, actual.Length);
         }
     }
