@@ -22,19 +22,19 @@
         {
             var newState = new List<List<Cell>>();
 
-            for (var i = 0; i < _grid.Count; i++)
+            for (var y = 0; y < _grid.Count; y++)
             {
                 newState.Add(new List<Cell>());
 
-                for (var j = 0; j < _grid[i].Count; j++)
+                for (var x = 0; x < _grid[y].Count; x++)
                 {
-                    var coordinate = new Coordinate(i, j);
+                    var coordinate = new Coordinate(x, y);
 
                     var position = _cellPositionCalculator.CalculateCellPosition(coordinate.XCoordinate, coordinate.YCoordinate);
 
                     var neighbours = _neighbourSelector.GetNeighbourCells(_grid, coordinate, position);
 
-                    newState[i].Add(_grid[i][j].GetNextState(neighbours));
+                    newState[y].Add(_grid[y][x].GetNextState(neighbours));
                 }
             }
 
@@ -43,11 +43,13 @@
 
         public void PrintBoard()
         {
-            for (var i = 0; i < _grid[0].Count; i++)
+            Console.Clear();
+
+            for (var i = 0; i < _grid.Count; i++)
             {
-                for (var j = 0; j < _grid.Count; j++)
+                for (var j = 0; j < _grid[i].Count; j++)
                 {
-                    if (_grid[j][i] == Cell.Alive)
+                    if (_grid[i][j] == Cell.Alive)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write('x');
@@ -63,8 +65,6 @@
             }
 
             Thread.Sleep(400);
-
-            Console.Clear();
         }
     }
 }

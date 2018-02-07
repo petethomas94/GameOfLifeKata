@@ -36,14 +36,14 @@
         {
             return new[]
             {
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate],
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate + 1],
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate + 1],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate + 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate + 1],
             };
         }
 
@@ -51,11 +51,11 @@
         {
             return new[]
             {
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate + 1],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate + 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate + 1],
             };
         }
 
@@ -63,9 +63,9 @@
         {
             return new[]
             {
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate]
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate]
             };
         }
 
@@ -73,11 +73,11 @@
         {
             return new[]
             {
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate],
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate - 1],
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
             };
         }
 
@@ -85,9 +85,9 @@
         {
             return new[]
             {
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate]
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate]
             };
         }
 
@@ -95,11 +95,11 @@
         {
             return new[]
             {
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate + 1],
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate - 1],
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate],
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate + 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
             };
         }
 
@@ -107,9 +107,9 @@
         {
             return new[]
             {
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate + 1],
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate],
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate + 1],
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
             };
         }
 
@@ -117,11 +117,11 @@
         {
             return new[]
             {
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate],
-                grid[cellCoordinate.XCoordinate - 1][cellCoordinate.YCoordinate + 1],
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate + 1],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate + 1],
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate + 1],
             };
         }
 
@@ -129,9 +129,9 @@
         {
             return new[]
             {
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate + 1],
-                grid[cellCoordinate.XCoordinate + 1][cellCoordinate.YCoordinate],
-                grid[cellCoordinate.XCoordinate][cellCoordinate.YCoordinate + 1],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
+                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
             };
         }
     }

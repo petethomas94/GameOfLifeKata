@@ -12,7 +12,7 @@
         [Fact]
         private void SelectsCorrectCellsForTopLeftCorner()
         {
-            var grid = new GridFactory().CreateGrid(
+            var grid = GridFactory.CreateGrid(
                 new GridDimensions(10, 10),
                 new List<Coordinate>()
                 {
@@ -30,7 +30,7 @@
         [Fact]
         private void SelectsCorrectCellsForTopRightCorner()
         {
-            var grid = new GridFactory().CreateGrid(
+            var grid = GridFactory.CreateGrid(
                 new GridDimensions(10, 10),
                 new List<Coordinate>()
                 {
@@ -48,7 +48,7 @@
         [Fact]
         private void SelectsCorrectCellsForBottomRightCorner()
         {
-            var grid = new GridFactory().CreateGrid(
+            var grid = GridFactory.CreateGrid(
                 new GridDimensions(10, 10),
                 new List<Coordinate>()
                 {
@@ -66,7 +66,7 @@
         [Fact]
         private void SelectsCorrectCellsForBottomLeftCorner()
         {
-            var grid = new GridFactory().CreateGrid(
+            var grid = GridFactory.CreateGrid(
                 new GridDimensions(10, 10),
                 new List<Coordinate>()
                 {
@@ -84,7 +84,7 @@
         [Fact]
         private void SelectsCorrectCellsForTopEdge()
         {
-            var grid = new GridFactory().CreateGrid(
+            var grid = GridFactory.CreateGrid(
                 new GridDimensions(10, 10),
                 new List<Coordinate>()
                 {
@@ -104,7 +104,7 @@
         [Fact]
         private void SelectsCorrectCellsForBottomEdge()
         {
-            var grid = new GridFactory().CreateGrid(
+            var grid = GridFactory.CreateGrid(
                 new GridDimensions(10, 10),
                 new List<Coordinate>()
                 {
@@ -124,7 +124,7 @@
         [Fact]
         private void SelectsCorrectCellsForLeftEdge()
         {
-            var grid = new GridFactory().CreateGrid(
+            var grid = GridFactory.CreateGrid(
                 new GridDimensions(10, 10),
                 new List<Coordinate>()
                 {
@@ -144,7 +144,7 @@
         [Fact]
         private void SelectsCorrectCellsForRightEdge()
         {
-            var grid = new GridFactory().CreateGrid(
+            var grid = GridFactory.CreateGrid(
                 new GridDimensions(10, 10),
                 new List<Coordinate>()
                 {
@@ -164,7 +164,7 @@
         [Fact]
         private void SelectsCorrectCellsForCentre()
         {
-            var grid = new GridFactory().CreateGrid(
+            var grid = GridFactory.CreateGrid(
                 new GridDimensions(10, 10),
                 new List<Coordinate>()
                 {

@@ -14,7 +14,7 @@
 
         public GameTests()
         {
-            _grid = new GridFactory().CreateGrid(_gridDimensions, new List<Coordinate>());
+            _grid = GridFactory.CreateGrid(_gridDimensions, new List<Coordinate>());
 
             _sut = new Game(_neighbourSelector.Object, new CellPositionCalculator(_gridDimensions), _grid);
         }

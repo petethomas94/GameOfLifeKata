@@ -5,23 +5,23 @@
 
     public class GridFactory
     {
-        public List<List<Cell>> CreateGrid(GridDimensions gridDimensions, List<Coordinate> seed)
+        public static List<List<Cell>> CreateGrid(GridDimensions gridDimensions, List<Coordinate> seed)
         {
             var grid = new List<List<Cell>>();
 
-            for (int i = 0; i < gridDimensions.Width; i++)
+            for (int y = 0; y < gridDimensions.Height; y++)
             {
                 grid.Add(new List<Cell>());
 
-                for (int j = 0; j < gridDimensions.Width; j++)
+                for (int x = 0; x < gridDimensions.Width; x++)
                 {
-                    if (seed.Any(c => c.XCoordinate == i && c.YCoordinate == j))
+                    if (seed.Any(c => c.XCoordinate == x && c.YCoordinate == y))
                     {
-                        grid[i].Add(Cell.Alive);
+                        grid[y].Add(Cell.Alive);
                     }
                     else
                     {
-                        grid[i].Add(Cell.Dead);
+                        grid[y].Add(Cell.Dead);
                     }
                 }
             }
