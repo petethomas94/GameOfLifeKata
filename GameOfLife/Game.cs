@@ -34,7 +34,7 @@
 
                     var neighbours = _neighbourSelector.GetNeighbourCells(_grid, coordinate, position);
 
-                    newState[i].Add(new Cell(_grid[i][j].GetNextState(neighbours)));
+                    newState[i].Add(_grid[i][j].GetNextState(neighbours));
                 }
             }
 
@@ -47,7 +47,7 @@
             {
                 for (var j = 0; j < _grid.Count; j++)
                 {
-                    if (_grid[j][i].IsAlive())
+                    if (_grid[j][i] == Cell.Alive)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write('x');
