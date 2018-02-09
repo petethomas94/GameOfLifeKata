@@ -9,20 +9,19 @@
     {
         private Mock<INeighbourSelector> _neighbourSelector = new Mock<INeighbourSelector>();
         private GridDimensions _gridDimensions = new GridDimensions(10, 10);
-        private List<List<Cell>> _grid;
-        private Game _sut;
+        private GridGenerator _sut;
 
         public GameTests()
         {
-            _grid = GridFactory.CreateGrid(_gridDimensions, new List<Coordinate>());
-
-            _sut = new Game(_neighbourSelector.Object, new CellPositionCalculator(_gridDimensions), _grid);
+            _sut = new GridGenerator(_neighbourSelector.Object, new CellPositionCalculator(_gridDimensions));
         }
 
         [Fact]
         public void NeighbourSelectorIsCalledCorrectNumberOfTimesWithCorrectParameters()
         {
-            _sut.GenerateNextIteration();
+            var grid = GridFactory.CreateGrid(_gridDimensions, new List<Coordinate>());
+
+            var newGrid = _sut.GenerateNextIteration(grid);
 
             _neighbourSelector.Verify(ns => ns.GetNeighbourCells(
                 It.IsAny<List<List<Cell>>>(),

@@ -2,23 +2,26 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 
-    class Program
+    public class Program
     {
         private static GridDimensions _gridDimensions = new GridDimensions(15, 30);
 
         static void Main()
         {
-            do
+            while (true)
             {
+                var generator = new GridDisplayGenerator();
+
                 var seedGrid = GridFactory.CreateGrid(_gridDimensions, new List<Coordinate>());
 
                 var seed = new List<Coordinate>();
 
                 var cursor = new Coordinate(0, 0);
 
-                PrintBoard(seedGrid, cursor, seed);
+                Console.Write(generator.GenerateGridDisplay(seedGrid));
 
                 var instruction = Console.ReadKey();
 
@@ -73,52 +76,70 @@
 
                     Console.Clear();
 
-                    PrintBoard(seedGrid, cursor, seed);
+                    Console.Write(generator.GenerateGridDisplay(seedGrid, cursor, seed));
 
                     instruction = Console.ReadKey();
                 }
 
                 var grid = GridFactory.CreateGrid(_gridDimensions, seed);
 
-                var game = new Game(new NeighbourSelector(), new CellPositionCalculator(_gridDimensions), grid);
+                var gridGenerator = new GridGenerator(new NeighbourSelector(), new CellPositionCalculator(_gridDimensions));
 
-                while (!Console.KeyAvailable)
-                {
-                    game.GenerateNextIteration();
-                    game.PrintBoard();
-                }
+                var game = new Game(gridGenerator, generator, new ConsolePrinter());
+
+                var tcs = new CancellationTokenSource();
+
+                var task = Task.Run(() => game.Start(grid, tcs.Token), tcs.Token);
+
+                Console.ReadKey();
+
+                tcs.Cancel();
+
+                task.Wait();
 
                 Console.Clear();
-
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
-
-        }
-
-        private static void PrintBoard(List<List<Cell>> _grid, Coordinate cursor, List<Coordinate> seed)
-        {
-            for (var i = 0; i < _grid.Count; i++)
-            {
-                for (var j = 0; j < _grid[i].Count; j++)
-                {
-                    if (CursorPosition(j, cursor, i) || seed.Any(c => c.XCoordinate == j && c.YCoordinate == i))
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write('x');
-                        Console.ResetColor();
-                    }
-                    else
-                    {
-                        Console.Write('o');
-                    }
-                }
-
-                Console.Write('\n');
             }
         }
+    }
 
-        private static bool CursorPosition(int j, Coordinate cursor, int i)
+    public class Game
+    {
+        private readonly GridGenerator _generator;
+        private readonly IGridDisplayGenerator _displayGenerator;
+        private readonly IConsolePrinter _printer;
+
+        public Game(GridGenerator generator, IGridDisplayGenerator displayGenerator, IConsolePrinter printer)
         {
-            return j == cursor.XCoordinate && i == cursor.YCoordinate;
+            _generator = generator;
+            _displayGenerator = displayGenerator;
+            _printer = printer;
+        }
+
+        public void Start(List<List<Cell>> grid, CancellationToken token)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                grid = _generator.GenerateNextIteration(grid);
+
+                _printer.OutputToConsole(_displayGenerator.GenerateGridDisplay(grid));
+
+                Thread.Sleep(600);
+
+                _printer.ClearConsole();
+            }
+        }
+    }
+
+    public class ConsolePrinter : IConsolePrinter
+    {
+        public void OutputToConsole(string output)
+        {
+            Console.Write(output);
+        }
+
+        public void ClearConsole()
+        {
+            Console.Clear();
         }
     }
 }
