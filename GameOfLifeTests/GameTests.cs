@@ -13,13 +13,13 @@
 
         public GameTests()
         {
-            _sut = new GridGenerator(_neighbourSelector.Object, new CellPositionCalculator(_gridDimensions));
+            _sut = new GridGenerator(_neighbourSelector.Object, new CellPositionCalculator());
         }
 
         [Fact]
         public void NeighbourSelectorIsCalledCorrectNumberOfTimesWithCorrectParameters()
         {
-            var grid = GridFactory.CreateGrid(_gridDimensions, new List<Coordinate>());
+            var grid = new Grid(_gridDimensions);
 
             var newGrid = _sut.GenerateNextIteration(grid);
 
