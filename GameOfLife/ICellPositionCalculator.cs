@@ -1,7 +1,7 @@
 ﻿namespace GameOfLife
 {
-    public interface ICellPositionCalculator
+    public interface    ICellPositionCalculator
     {
-        CellPosition CalculateCellPosition(int xCoordinate, int yCoordinate);
+        CellPosition CalculateCellPosition(GridDimensions gridDimensions, Coordinate coordinate);
     }
 }

@@ -14,51 +14,44 @@
 
     public class CellPositionCalculator : ICellPositionCalculator
     {
-        private readonly GridDimensions _dimensions;
-
-        public CellPositionCalculator(GridDimensions dimensions)
+        public CellPosition CalculateCellPosition(GridDimensions gridDimensions, Coordinate coordinate)
         {
-            _dimensions = dimensions;
-        }
-
-        public CellPosition CalculateCellPosition(int xCoordinate, int yCoordinate)
-        {
-            if (TopLeftCorner(xCoordinate, yCoordinate))
+            if (TopLeftCorner(coordinate))
             {
                 return CellPosition.TopLeftCorner;
             }
 
-            if (TopRightCorner(xCoordinate, yCoordinate))
+            if (TopRightCorner(gridDimensions, coordinate))
             {
                 return CellPosition.TopRightCorner;
             }
 
-            if (BottomRightCorner(xCoordinate, yCoordinate))
+            if (BottomRightCorner(gridDimensions, coordinate))
             {
                 return CellPosition.BottomRightCorner;
             }
 
-            if (BottomLeftCorner(xCoordinate, yCoordinate))
+            if (BottomLeftCorner(gridDimensions, coordinate))
             {
                 return CellPosition.BottomLeftCorner;
             }
 
-            if (TopEdge(xCoordinate, yCoordinate))
+            if (TopEdge(gridDimensions, coordinate))
             {
                 return CellPosition.TopEdge;
             }
 
-            if (RightEdge(xCoordinate, yCoordinate))
+            if (RightEdge(gridDimensions, coordinate))
             {
                 return CellPosition.RightEdge;
             }
 
-            if (BottomEdge(xCoordinate, yCoordinate))
+            if (BottomEdge(gridDimensions, coordinate))
             {
                 return CellPosition.BottomEdge;
             }
 
-            if (LeftEdge(xCoordinate, yCoordinate))
+            if (LeftEdge(gridDimensions, coordinate))
             {
                 return CellPosition.LeftEdge;
             }
@@ -66,44 +59,44 @@
             return CellPosition.Centre;
         }
 
-        private bool TopLeftCorner(int xCoordinate, int yCoordinate)
+        private bool TopLeftCorner(Coordinate coordinate)
         {
-            return xCoordinate == 0 && yCoordinate == 0;
+            return coordinate.XCoordinate == 0 && coordinate.YCoordinate == 0;
         }
 
-        private bool TopRightCorner(int xCoordinate, int yCoordinate)
+        private bool TopRightCorner(GridDimensions dimensions, Coordinate coordinate)
         {
-            return xCoordinate == _dimensions.Width - 1 && yCoordinate == 0;
+            return coordinate.XCoordinate == dimensions.Width - 1 && coordinate.YCoordinate == 0;
         }
 
-        private bool BottomRightCorner(int xCoordinate, int yCoordinate)
+        private bool BottomRightCorner(GridDimensions dimensions, Coordinate coordinate)
         {
-            return xCoordinate == _dimensions.Width - 1 && yCoordinate == _dimensions.Height - 1;
+            return coordinate.XCoordinate == dimensions.Width - 1 && coordinate.YCoordinate == dimensions.Height - 1;
         }
 
-        private bool BottomLeftCorner(int xCoordinate, int yCoordinate)
+        private bool BottomLeftCorner(GridDimensions dimensions, Coordinate coordinate)
         {
-            return xCoordinate == 0 && yCoordinate == _dimensions.Height - 1;
+            return coordinate.XCoordinate == 0 && coordinate.YCoordinate == dimensions.Height - 1;
         }
 
-        private bool TopEdge(int xCoordinate, int yCoordinate)
+        private bool TopEdge(GridDimensions dimensions, Coordinate coordinate)
         {
-            return xCoordinate < _dimensions.Width - 1 && yCoordinate == 0;
+            return coordinate.XCoordinate < dimensions.Width - 1 && coordinate.YCoordinate == 0;
         }
 
-        private bool RightEdge(int xCoordinate, int yCoordinate)
+        private bool RightEdge(GridDimensions dimensions, Coordinate coordinate)
         {
-            return xCoordinate == _dimensions.Width - 1 && yCoordinate < _dimensions.Height - 1;
+            return coordinate.XCoordinate == dimensions.Width - 1 && coordinate.YCoordinate < dimensions.Height - 1;
         }
 
-        private bool BottomEdge(int xCoordinate, int yCoordinate)
+        private bool BottomEdge(GridDimensions dimensions, Coordinate coordinate)
         {
-            return xCoordinate < _dimensions.Width - 1 && yCoordinate == _dimensions.Height - 1;
+            return coordinate.XCoordinate < dimensions.Width - 1 && coordinate.YCoordinate == dimensions.Height - 1;
         }
 
-        private bool LeftEdge(int xCoordinate, int yCoordinate)
+        private bool LeftEdge(GridDimensions dimensions, Coordinate coordinate)
         {
-            return xCoordinate == 0 && yCoordinate < _dimensions.Height - 1;
+            return coordinate.XCoordinate == 0 && coordinate.YCoordinate < dimensions.Height - 1;
         }
     }
 }

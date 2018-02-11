@@ -7,13 +7,13 @@
         private readonly INeighbourSelector _neighbourSelector;
         private readonly ICellPositionCalculator _cellPositionCalculator;
 
-        public GridGenerator(INeighbourSelector neighbourSelector, ICellPositionCalculator cellPositionCalculator)
+        public  GridGenerator(INeighbourSelector neighbourSelector, ICellPositionCalculator cellPositionCalculator)
         {
             _neighbourSelector = neighbourSelector;
             _cellPositionCalculator = cellPositionCalculator;
         }
 
-        public List<List<Cell>> GenerateNextIteration(List<List<Cell>> grid)
+        public List<List<Cell>> GenerateNextIteration(List<List<Cell>> grid, GridDimensions dimensions)
         {
             var newState = new List<List<Cell>>();
 
@@ -25,7 +25,7 @@
                 {
                     var coordinate = new Coordinate(x, y);
 
-                    var position = _cellPositionCalculator.CalculateCellPosition(coordinate.XCoordinate, coordinate.YCoordinate);
+                    var position = _cellPositionCalculator.CalculateCellPosition(dimensions, coordinate);
 
                     var neighbours = _neighbourSelector.GetNeighbourCells(grid, coordinate, position);
 

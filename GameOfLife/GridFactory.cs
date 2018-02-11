@@ -28,5 +28,9 @@
 
             return grid;
         }
+
+        public static List<List<Cell>> CreateGrid(GridDimensions gridDimensions){
+            return CreateGrid(gridDimensions, new List<Coordinate>());  
+        }
     }
 }
