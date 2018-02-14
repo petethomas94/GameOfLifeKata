@@ -1,30 +1,31 @@
-﻿using Xunit;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using GameOfLife;
 using Moq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+using Xunit;
 
 namespace GameOfLifeTests
 {
     public class GameAcceptanceTest
     {
-        private readonly GridDimensions gridDimensions = new GridDimensions(5,5);
+        private readonly GridDimensions gridDimensions = new GridDimensions(5, 5);
         private readonly Mock<IConsolePrinter> printer = new Mock<IConsolePrinter>();
         private readonly CancellationTokenSource cts = new CancellationTokenSource();
 
 
         [Fact]
-        public void OutputsCorrectGridToConsole(){
+        public void OutputsCorrectGridToConsole()
+        {
 
-            var grid = new Grid(gridDimensions);
-            
-            var sut = new Game(
-                new GridGenerator(
+            var grid = new Grid(
+                gridDimensions,
+                new GridStateGenerator(
                     new NeighbourSelector(),
                     new CellPositionCalculator()
                 ),
-                new GridDisplayGenerator(),
+                new GridDisplayGenerator());
+
+            var sut = new Game(
                 printer.Object,
                 grid
                 );

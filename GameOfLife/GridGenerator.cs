@@ -2,12 +2,17 @@
 {
     using System.Collections.Generic;
 
-    public class GridGenerator
+    public interface IGridStateGenerator
+    {
+        List<List<Cell>> GenerateNextIteration(List<List<Cell>> grid, GridDimensions dimensions);
+    }
+
+    public class GridStateGenerator : IGridStateGenerator
     {
         private readonly INeighbourSelector _neighbourSelector;
         private readonly ICellPositionCalculator _cellPositionCalculator;
 
-        public  GridGenerator(INeighbourSelector neighbourSelector, ICellPositionCalculator cellPositionCalculator)
+        public GridStateGenerator(INeighbourSelector neighbourSelector, ICellPositionCalculator cellPositionCalculator)
         {
             _neighbourSelector = neighbourSelector;
             _cellPositionCalculator = cellPositionCalculator;

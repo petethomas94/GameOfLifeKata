@@ -1,31 +1,29 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace GameOfLife
-{ 
+{
     public class Game
     {
-        private readonly GridGenerator _generator;
-        private readonly IGridDisplayGenerator _displayGenerator;
         private readonly IConsolePrinter _printer;
-        private readonly GridDimensions _gridDimensions;
 
-        public Game(GridGenerator generator, IGridDisplayGenerator displayGenerator, IConsolePrinter printer, GridDimensions dimensions)
+        private readonly Grid _grid;
+
+        private Coordinate _cursor = new Coordinate(0, 0);
+
+        public Game(IConsolePrinter printer, Grid grid)
         {
-            _generator = generator;
-            _displayGenerator = displayGenerator;
             _printer = printer;
-            _gridDimensions = dimensions;
+            _grid = grid;
         }
 
-        public void Start(List<List<Cell>> grid, CancellationToken token)
+        public void Start(CancellationToken token)
         {
             while (!token.IsCancellationRequested)
             {
-                grid = _generator.GenerateNextIteration(grid, _gridDimensions);
+                _grid.NextGeneration();
 
-                _printer.OutputToConsole(_displayGenerator.GenerateGridDisplay(grid));
+                _printer.OutputToConsole(_grid.GetDisplay());
 
                 Thread.Sleep(600);
 
@@ -33,78 +31,21 @@ namespace GameOfLife
             }
         }
 
-        public List<Coordinate> GetSeedStateFromUser(){
-
-            var seedGrid = GridFactory.CreateGrid(_gridDimensions, new List<Coordinate>());
-
-            var seed = new List<Coordinate>();
-
-            var cursor = new Coordinate(0, 0);
-
-            _printer.OutputToConsole(_displayGenerator.GenerateGridDisplay(seedGrid));
+        public void AddSeedStateToBoard()
+        {
+            _printer.OutputToConsole(_grid.GetDisplay());
 
             var instruction = Console.ReadKey();
 
             while (instruction.Key != ConsoleKey.Enter)
             {
-                HandleUserInput(instruction.Key, cursor, seed);
+                _grid.HandleUserInput(instruction.Key, _cursor);
 
                 _printer.ClearConsole();
 
-                _printer.OutputToConsole(_displayGenerator.GenerateGridDisplay(seedGrid, cursor, seed));
+                _printer.OutputToConsole(_grid.GetDisplay(_cursor));
 
                 instruction = Console.ReadKey();
-            }
-
-            return seed;
-        }
-
-        public void HandleUserInput(ConsoleKey instruction, Coordinate cursor, List<Coordinate> seed){
-            switch (instruction)
-            {
-                case ConsoleKey.LeftArrow:
-                    if (cursor.XCoordinate == 0)
-                    {
-                        cursor.XCoordinate = _gridDimensions.Width - 1;
-                    }
-                    else
-                    {
-                        cursor.XCoordinate--;
-                    }
-                    break;
-                case ConsoleKey.RightArrow:
-                    if (cursor.XCoordinate == _gridDimensions.Width - 1)
-                    {
-                        cursor.XCoordinate = 0;
-                    }
-                    else
-                    {
-                        cursor.XCoordinate++;
-                    }
-                    break;
-                case ConsoleKey.DownArrow:
-                    if (cursor.YCoordinate == _gridDimensions.Height - 1)
-                    {
-                        cursor.YCoordinate = 0;
-                    }
-                    else
-                    {
-                        cursor.YCoordinate++;
-                    }
-                    break;
-                case ConsoleKey.UpArrow:
-                    if (cursor.YCoordinate == 0)
-                    {
-                        cursor.YCoordinate = _gridDimensions.Height - 1;
-                    }
-                    else
-                    {
-                        cursor.YCoordinate--;
-                    }
-                    break;
-                case ConsoleKey.Spacebar:
-                    seed.Add(new Coordinate(cursor.XCoordinate, cursor.YCoordinate));
-                    break;
             }
         }
     }

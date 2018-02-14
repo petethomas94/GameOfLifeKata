@@ -1,7 +1,6 @@
 ﻿namespace GameOfLife
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -11,21 +10,21 @@
 
         private static GridDisplayGenerator _gridDisplayGenerator = new GridDisplayGenerator();
 
+        private static GridStateGenerator _gridStateGenerator = new GridStateGenerator(new NeighbourSelector(), new CellPositionCalculator());
+
         static void Main()
         {
             while (true)
             {
-                var gridGenerator = new GridGenerator(new NeighbourSelector(), new CellPositionCalculator());
+                var grid = new Grid(_gridDimensions, _gridStateGenerator, _gridDisplayGenerator);
 
-                var game = new Game(gridGenerator, _gridDisplayGenerator, new ConsolePrinter(), _gridDimensions);
+                var game = new Game(new ConsolePrinter(), grid);
 
-                var seed = game.GetSeedStateFromUser();
-
-                var grid = GridFactory.CreateGrid(_gridDimensions, seed);                
+                game.AddSeedStateToBoard();
 
                 var tcs = new CancellationTokenSource();
 
-                var task = Task.Run(() => game.Start(grid, tcs.Token), tcs.Token);
+                var task = Task.Run(() => game.Start(tcs.Token), tcs.Token);
 
                 Console.ReadKey();
 
@@ -35,27 +34,6 @@
 
                 Console.Clear();
             }
-        }
-    }
-
-    public class ConsolePrinter : IConsolePrinter
-    {
-        public void OutputToConsole(string output)
-        {
-            foreach(var c in output){
-                if(c == 'x'){
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(c);
-                    Console.ResetColor();
-                }else{
-                    Console.Write(c);
-                }
-            }
-        }
-
-        public void ClearConsole()
-        {
-            Console.Clear();
         }
     }
 }
