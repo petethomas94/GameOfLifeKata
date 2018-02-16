@@ -1,11 +1,7 @@
 ﻿namespace GameOfLife
 {
     using System.Collections.Generic;
-
-    public interface IGridStateGenerator
-    {
-        List<List<Cell>> GenerateNextIteration(List<List<Cell>> grid, GridDimensions dimensions);
-    }
+    using Interfaces;
 
     public class GridStateGenerator : IGridStateGenerator
     {
@@ -22,23 +18,33 @@
         {
             var newState = new List<List<Cell>>();
 
-            for (var y = 0; y < grid.Count; y++)
+            TraverseRows(grid, dimensions, newState);
+
+            return newState;
+        }
+
+        private void TraverseRows(List<List<Cell>> grid, GridDimensions dimensions, List<List<Cell>> newState)
+        {
+            for (var row = 0; row < grid.Count; row++)
             {
                 newState.Add(new List<Cell>());
 
-                for (var x = 0; x < grid[y].Count; x++)
-                {
-                    var coordinate = new Coordinate(x, y);
-
-                    var position = _cellPositionCalculator.CalculateCellPosition(dimensions, coordinate);
-
-                    var neighbours = _neighbourSelector.GetNeighbourCells(grid, coordinate, position);
-
-                    newState[y].Add(grid[y][x].GetNextState(neighbours));
-                }
+                TraverseColumns(grid, dimensions, newState, row);
             }
+        }
 
-            return newState;
+        private void TraverseColumns(List<List<Cell>> grid, GridDimensions dimensions, List<List<Cell>> newState, int row)
+        {
+            for (var column = 0; column < grid[row].Count; column++)
+            {
+                var coordinate = new Coordinate(column, row);
+
+                var position = _cellPositionCalculator.CalculateCellPosition(dimensions, coordinate);
+
+                var neighbours = _neighbourSelector.GetNeighbourCells(grid, coordinate, position);
+
+                newState[row].Add(grid[row][column].GetNextState(neighbours));
+            }
         }
     }
 }

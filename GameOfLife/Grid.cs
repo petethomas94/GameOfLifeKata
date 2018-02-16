@@ -2,6 +2,7 @@ namespace GameOfLife
 {
     using System;
     using System.Collections.Generic;
+    using Interfaces;
 
     public class Grid
     {
@@ -22,7 +23,7 @@ namespace GameOfLife
 
         private void AddSeedCell(Coordinate coordinate)
         {
-            _cells[coordinate.YCoordinate][coordinate.XCoordinate] = Cell.Alive;
+            _cells[coordinate.Row][coordinate.Column] = Cell.Alive;
         }
 
         public void NextGeneration()
@@ -39,12 +40,11 @@ namespace GameOfLife
         {
             if (instruction == ConsoleKey.Spacebar)
             {
-                AddSeedCell(new Coordinate(cursor.XCoordinate, cursor.YCoordinate));
+                AddSeedCell(new Coordinate(cursor.Column, cursor.Row));
+                return;
             }
-            else
-            {
-                cursor.UserInput(instruction, _dimensions);
-            }
+
+            cursor.Move(instruction, _dimensions);
         }
     }
 }

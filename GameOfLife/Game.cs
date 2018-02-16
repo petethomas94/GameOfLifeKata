@@ -3,6 +3,8 @@ using System.Threading;
 
 namespace GameOfLife
 {
+    using Interfaces;
+
     public class Game
     {
         private readonly IConsolePrinter _printer;

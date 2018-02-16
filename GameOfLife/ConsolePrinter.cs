@@ -2,6 +2,7 @@ namespace GameOfLife
 {
     using System;
     using System.Text.RegularExpressions;
+    using Interfaces;
 
     public class ConsolePrinter : IConsolePrinter
     {

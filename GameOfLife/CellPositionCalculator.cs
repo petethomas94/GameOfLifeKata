@@ -1,5 +1,7 @@
 ﻿namespace GameOfLife
 {
+    using Interfaces;
+
     public class CellPositionCalculator : ICellPositionCalculator
     {
         public CellPosition CalculateCellPosition(GridDimensions gridDimensions, Coordinate coordinate)
@@ -49,42 +51,42 @@
 
         private bool TopLeftCorner(Coordinate coordinate)
         {
-            return coordinate.XCoordinate == 0 && coordinate.YCoordinate == 0;
+            return coordinate.Column == 0 && coordinate.Row == 0;
         }
 
         private bool TopRightCorner(GridDimensions dimensions, Coordinate coordinate)
         {
-            return coordinate.XCoordinate == dimensions.Width - 1 && coordinate.YCoordinate == 0;
+            return coordinate.Column == dimensions.Width - 1 && coordinate.Row == 0;
         }
 
         private bool BottomRightCorner(GridDimensions dimensions, Coordinate coordinate)
         {
-            return coordinate.XCoordinate == dimensions.Width - 1 && coordinate.YCoordinate == dimensions.Height - 1;
+            return coordinate.Column == dimensions.Width - 1 && coordinate.Row == dimensions.Height - 1;
         }
 
         private bool BottomLeftCorner(GridDimensions dimensions, Coordinate coordinate)
         {
-            return coordinate.XCoordinate == 0 && coordinate.YCoordinate == dimensions.Height - 1;
+            return coordinate.Column == 0 && coordinate.Row == dimensions.Height - 1;
         }
 
         private bool TopEdge(GridDimensions dimensions, Coordinate coordinate)
         {
-            return coordinate.XCoordinate < dimensions.Width - 1 && coordinate.YCoordinate == 0;
+            return coordinate.Column < dimensions.Width - 1 && coordinate.Row == 0;
         }
 
         private bool RightEdge(GridDimensions dimensions, Coordinate coordinate)
         {
-            return coordinate.XCoordinate == dimensions.Width - 1 && coordinate.YCoordinate < dimensions.Height - 1;
+            return coordinate.Column == dimensions.Width - 1 && coordinate.Row < dimensions.Height - 1;
         }
 
         private bool BottomEdge(GridDimensions dimensions, Coordinate coordinate)
         {
-            return coordinate.XCoordinate < dimensions.Width - 1 && coordinate.YCoordinate == dimensions.Height - 1;
+            return coordinate.Column < dimensions.Width - 1 && coordinate.Row == dimensions.Height - 1;
         }
 
         private bool LeftEdge(GridDimensions dimensions, Coordinate coordinate)
         {
-            return coordinate.XCoordinate == 0 && coordinate.YCoordinate < dimensions.Height - 1;
+            return coordinate.Column == 0 && coordinate.Row < dimensions.Height - 1;
         }
     }
 }

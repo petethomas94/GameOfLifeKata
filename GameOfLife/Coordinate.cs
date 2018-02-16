@@ -4,58 +4,58 @@
 
     public class Coordinate
     {
-        public Coordinate(int xCoordinate, int yCoordinate)
+        public Coordinate(int column, int row)
         {
-            XCoordinate = xCoordinate;
-            YCoordinate = yCoordinate;
+            Column = column;
+            Row = row;
         }
 
-        public int XCoordinate { get; set; }
+        public int Column { get; set; }
 
-        public int YCoordinate { get; set; }
+        public int Row { get; set; }
 
-        public void UserInput(ConsoleKey instruction, GridDimensions dimensions)
+        public void Move(ConsoleKey instruction, GridDimensions dimensions)
         {
             switch (instruction)
             {
                 case ConsoleKey.LeftArrow:
-                    if (XCoordinate == 0)
+                    if (Column == 0)
                     {
-                        XCoordinate = dimensions.Width - 1;
+                        Column = dimensions.Width - 1;
                     }
                     else
                     {
-                        XCoordinate--;
+                        Column--;
                     }
                     break;
                 case ConsoleKey.RightArrow:
-                    if (XCoordinate == dimensions.Width - 1)
+                    if (Column == dimensions.Width - 1)
                     {
-                        XCoordinate = 0;
+                        Column = 0;
                     }
                     else
                     {
-                        XCoordinate++;
+                        Column++;
                     }
                     break;
                 case ConsoleKey.DownArrow:
-                    if (YCoordinate == dimensions.Height - 1)
+                    if (Row == dimensions.Height - 1)
                     {
-                        YCoordinate = 0;
+                        Row = 0;
                     }
                     else
                     {
-                        YCoordinate++;
+                        Row++;
                     }
                     break;
                 case ConsoleKey.UpArrow:
-                    if (YCoordinate == 0)
+                    if (Row == 0)
                     {
-                        YCoordinate = dimensions.Height - 1;
+                        Row = dimensions.Height - 1;
                     }
                     else
                     {
-                        YCoordinate--;
+                        Row--;
                     }
                     break;
             }

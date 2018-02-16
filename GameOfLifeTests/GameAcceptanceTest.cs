@@ -6,6 +6,8 @@ using Xunit;
 
 namespace GameOfLifeTests
 {
+    using GameOfLife.Interfaces;
+
     public class GameAcceptanceTest
     {
         private readonly GridDimensions gridDimensions = new GridDimensions(5, 5);

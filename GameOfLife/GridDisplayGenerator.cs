@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Interfaces;
 
     public class GridDisplayGenerator : IGridDisplayGenerator
     {
@@ -48,7 +49,7 @@
                 return false;
             }
 
-            return seed.Any(c => c.XCoordinate == xCoord && c.YCoordinate == yCoord);
+            return seed.Any(c => c.Column == xCoord && c.Row == yCoord);
         }
 
         private bool CursorPosition(Coordinate cursor, int xCoord, int yCoord)
@@ -58,7 +59,7 @@
                 return false;
             }
 
-            return xCoord == cursor.XCoordinate && yCoord == cursor.YCoordinate;
+            return xCoord == cursor.Column && yCoord == cursor.Row;
         }
     }
 }

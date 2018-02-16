@@ -15,7 +15,7 @@
 
                 for (int x = 0; x < gridDimensions.Width; x++)
                 {
-                    if (seed.Any(c => c.XCoordinate == x && c.YCoordinate == y))
+                    if (seed.Any(c => c.Column == x && c.Row == y))
                     {
                         grid[y].Add(Cell.Alive);
                     }
@@ -29,8 +29,9 @@
             return grid;
         }
 
-        public static List<List<Cell>> CreateGrid(GridDimensions gridDimensions){
-            return CreateGrid(gridDimensions, new List<Coordinate>());  
+        public static List<List<Cell>> CreateGrid(GridDimensions gridDimensions)
+        {
+            return CreateGrid(gridDimensions, new List<Coordinate>());
         }
     }
 }

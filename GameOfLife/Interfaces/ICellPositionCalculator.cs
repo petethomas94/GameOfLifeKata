@@ -1,4 +1,4 @@
-﻿namespace GameOfLife
+﻿namespace GameOfLife.Interfaces
 {
     public interface    ICellPositionCalculator
     {

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Interfaces;
 
     public class NeighbourSelector : INeighbourSelector
     {
@@ -36,14 +37,14 @@
         {
             return new[]
             {
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate + 1],
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column + 1],
+                grid[cellCoordinate.Row][cellCoordinate.Column + 1],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column + 1],
             };
         }
 
@@ -51,11 +52,11 @@
         {
             return new[]
             {
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate + 1],
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column + 1],
+                grid[cellCoordinate.Row][cellCoordinate.Column + 1],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column + 1],
             };
         }
 
@@ -63,9 +64,9 @@
         {
             return new[]
             {
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate + 1],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate]
+                grid[cellCoordinate.Row][cellCoordinate.Column + 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column + 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column]
             };
         }
 
@@ -73,11 +74,11 @@
         {
             return new[]
             {
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate + 1],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.Row][cellCoordinate.Column + 1],
+                grid[cellCoordinate.Row][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column + 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column - 1],
             };
         }
 
@@ -85,9 +86,9 @@
         {
             return new[]
             {
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate]
+                grid[cellCoordinate.Row][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column]
             };
         }
 
@@ -95,11 +96,11 @@
         {
             return new[]
             {
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate - 1][cellCoordinate.XCoordinate - 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row - 1][cellCoordinate.Column - 1],
             };
         }
 
@@ -107,9 +108,9 @@
         {
             return new[]
             {
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
+                grid[cellCoordinate.Row][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column],
             };
         }
 
@@ -117,11 +118,11 @@
         {
             return new[]
             {
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate - 1],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.Row][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row][cellCoordinate.Column + 1],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column - 1],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column + 1],
             };
         }
 
@@ -129,9 +130,9 @@
         {
             return new[]
             {
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate + 1],
-                grid[cellCoordinate.YCoordinate + 1][cellCoordinate.XCoordinate],
-                grid[cellCoordinate.YCoordinate][cellCoordinate.XCoordinate + 1],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column + 1],
+                grid[cellCoordinate.Row + 1][cellCoordinate.Column],
+                grid[cellCoordinate.Row][cellCoordinate.Column + 1],
             };
         }
     }
